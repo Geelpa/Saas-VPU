@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f58c36;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+label {
+    display: block;
+    margin: 8px;
+    font-weight: bold;
+}
+
+input[type="date"],
+input[type="checkbox"] {
+    margin-bottom: 15px;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.plans {
+    margin-bottom: 15px;
+}
+
+.plans label {
+    font-weight: normal;
+    display: block;
+    margin-bottom: 8px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
