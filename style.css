@@ -6,17 +6,33 @@
 
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
     background: #f58c36;
 }
 
-.container {
-    max-width: 500px;
+main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     margin: auto;
+    height: auto;
+}
+
+.utilization {
+    width: 500px;
     background: #fff;
+    margin: auto;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.liberation {
+    max-width: 500px;
+    background: #fff;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+
 }
 
 h2 {

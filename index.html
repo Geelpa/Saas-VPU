@@ -8,50 +8,52 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Dias de utilização</h2>
+    <main>
+        <div class="utilization">
+            <h2>Dias de utilização</h2>
 
-        <label for="startDate">Data Inicial:</label>
-        <input type="date" id="startDate">
+            <label for="startDate">Data Inicial:</label>
+            <input type="date" id="startDate">
 
-        <label for="endDate">Data Final:</label>
-        <input type="date" id="endDate">
+            <label for="endDate">Data Final:</label>
+            <input type="date" id="endDate">
 
-        <label>Planos:</label>
-        <div class="plans">
-            <label><input type="radio" name="plan" value="3.70"> 100mb - R$3,70/dia</label>
-            <label><input type="radio" name="plan" value="4.07"> 400mb - R$4,07/dia</label>
-            <label><input type="radio" name="plan" value="4.81"> 600mb - R$4,81/dia</label>
-            <label><input type="radio" name="plan" value="5.55"> 800mb - R$5,55/dia</label>
-            <label><input type="radio" name="plan" value="7.40"> 1000mb - R$7,40/dia</label>
+            <label>Planos:</label>
+            <div class="plans">
+                <label><input type="radio" name="plan" value="3.70"> 100mb - R$3,70/dia</label>
+                <label><input type="radio" name="plan" value="4.07"> 400mb - R$4,07/dia</label>
+                <label><input type="radio" name="plan" value="4.81"> 600mb - R$4,81/dia</label>
+                <label><input type="radio" name="plan" value="5.55"> 800mb - R$5,55/dia</label>
+                <label><input type="radio" name="plan" value="7.40"> 1000mb - R$7,40/dia</label>
+            </div>
+
+            <label><input type="checkbox" id="incluirInicio"> Incluir data de início (+1 dia)</label>
+
+            <button id="calcularBtn">Calcular</button>
+
+            <div class="result" id="output"></div>
         </div>
 
-        <label><input type="checkbox" id="incluirInicio"> Incluir data de início (+1 dia)</label>
+        <div class="liberation" style="margin-top: 40px;">
+            <h2>Informações sobre Vencimento e Bloqueio de Sinal</h2>
+            <p>
+                Após o vencimento de uma fatura, o sinal permanece ativo por até <strong>15 dias</strong>.
+                Se o pagamento não for identificado até esse prazo, o sinal é bloqueado.
+                A liberação após o bloqueio poderá ser feita em até <strong>7 dias</strong>.
+            </p>
 
-        <button id="calcularBtn">Calcular</button>
-
-        <div class="result" id="output"></div>
-    </div>
-
-    <div class="container" style="margin-top: 40px;">
-        <h2>Informações sobre Vencimento e Bloqueio de Sinal</h2>
-        <p>
-            Após o vencimento de uma fatura, o sinal permanece ativo por até <strong>15 dias</strong>.
-            Se o pagamento não for identificado até esse prazo, o sinal é bloqueado.
-            A liberação após o bloqueio poderá ser feita em até <strong>7 dias</strong>.
-        </p>
-
-        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <thead>
-                <tr style="background-color: #f0f0f0;">
-                    <th style="padding: 10px; border: 1px solid #ccc;">Vencimento</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Bloqueio</th>
-                    <th style="padding: 10px; border: 1px solid #ccc;">Liberação Máxima</th>
-                </tr>
-            </thead>
-            <tbody id="tabelaVencimentos"></tbody>
-        </table>
-    </div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="background-color: #f0f0f0;">
+                        <th style="padding: 10px; border: 1px solid #ccc;">Vencimento</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Bloqueio</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Liberação Máxima</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaVencimentos"></tbody>
+            </table>
+        </div>
+    </main>
     <script src="script.js"></script>
 </body>
 
