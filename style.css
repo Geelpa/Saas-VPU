@@ -14,7 +14,7 @@ main {
     justify-content: center;
     align-content: center;
     margin: auto;
-    height: auto;
+    height: 100vh;
 }
 
 .utilization {
@@ -23,7 +23,6 @@ main {
     margin: auto;
     padding: 25px;
     border-radius: 10px;
-
 }
 
 .liberation {
@@ -32,7 +31,6 @@ main {
     margin: auto;
     padding: 25px;
     border-radius: 10px;
-
 }
 
 h2 {
