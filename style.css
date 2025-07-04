@@ -147,4 +147,8 @@ table {
         font-weight: bold;
     }
 
+    header {
+        height: 8vh;
+    }
+
 }
