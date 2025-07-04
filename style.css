@@ -103,3 +103,27 @@ button:hover {
     font-size: 18px;
     color: #333;
 }
+
+@media (max-width: 780px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .utilization,
+    .liberation {
+        width: 400px;
+    }
+
+    .utilization div {}
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="date"] {
+        width: auto;
+        font-size: 14px;
+    }
+
+}
