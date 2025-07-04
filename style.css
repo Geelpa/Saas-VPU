@@ -111,10 +111,10 @@ table {
 @media (max-width: 1024px) {
     main {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        /* height: 100vh; */
+        flex-direction: column;
+        height: 100vh;
     }
 
     .utilization,
