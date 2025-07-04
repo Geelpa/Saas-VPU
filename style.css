@@ -25,6 +25,14 @@ main {
     border-radius: 10px;
 }
 
+.utilization div {
+    display: flex;
+}
+
+.date-style {
+    border: 1px solid rgba(99, 99, 99, 0.493);
+}
+
 .liberation {
     max-width: 500px;
     background: #fff;
@@ -42,14 +50,15 @@ h2 {
 }
 
 label {
-    display: block;
+    display: flex;
     margin: 8px;
     font-weight: bold;
+    font-size: 16px
 }
 
-input[type="date"],
 input[type="checkbox"] {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    margin-right: 8px
 }
 
 input[type="date"] {
@@ -60,16 +69,22 @@ input[type="date"] {
 
 .plans {
     margin-bottom: 15px;
+    display: block;
+    flex-direction: column;
 }
 
 .plans label {
-    font-weight: normal;
     display: block;
     margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.plans h3 {
+    margin: 16px;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 16px;
     background: #0077cc;
     color: white;
