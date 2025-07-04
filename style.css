@@ -73,14 +73,14 @@ input[type="date"] {
     flex-direction: column;
 }
 
+.plans h3 {
+    margin: 12px 0;
+}
+
 .plans label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-}
-
-.plans h3 {
-    margin: 16px;
 }
 
 button {
@@ -124,6 +124,11 @@ button:hover {
     input[type="date"] {
         width: auto;
         font-size: 14px;
+    }
+
+    .plans h3 {
+        font-size: 14px;
+        font-weight: bold;
     }
 
 }
