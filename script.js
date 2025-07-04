@@ -76,22 +76,37 @@ function gerarTabelaVencimentos() {
     const datasAtuais = [5, 10, 15, 20, 25].map(dia => new Date(anoAtual, mesAtual, dia));
     const todasDatas = [...datasAnteriores, ...datasAtuais];
 
-    // função para pular fim de semana
-    function pularFimDeSemana(data) {
-        const diaSemana = data.getDay(); // 0 = domingo, 6 = sábado
-        if (diaSemana === 6) data.setDate(data.getDate() + 2); // sábado → segunda
-        else if (diaSemana === 0) data.setDate(data.getDate() + 1); // domingo → segunda
+    // feriados nacionais fixos
+    const feriadosFixos = [
+        "01-01", "21-04", "01-05", "07-09", "12-10", "02-11", "15-11", "25-12"
+    ];
+
+    function isFeriado(data) {
+        const dia = data.getDate().toString().padStart(2, "0");
+        const mes = (data.getMonth() + 1).toString().padStart(2, "0");
+        const chave = `${dia}-${mes}`;
+        return feriadosFixos.includes(chave);
+    }
+
+    function pularNaoUteis(data) {
+        while (
+            data.getDay() === 0 || // domingo
+            data.getDay() === 6 || // sábado
+            isFeriado(data)
+        ) {
+            data.setDate(data.getDate() + 1);
+        }
         return data;
     }
 
     todasDatas.forEach(dataVenc => {
         let dataBloqueio = new Date(dataVenc);
         dataBloqueio.setDate(dataBloqueio.getDate() + 15);
-        dataBloqueio = pularFimDeSemana(dataBloqueio);
+        dataBloqueio = pularNaoUteis(dataBloqueio);
 
         let dataMax = new Date(dataBloqueio);
-        dataMax.setDate(dataMax.getDate() + 6);
-        dataMax = pularFimDeSemana(dataMax);
+        dataMax.setDate(dataMax.getDate() + 7);
+        dataMax = pularNaoUteis(dataMax);
 
         const formatar = data =>
             data.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
