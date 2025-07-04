@@ -104,7 +104,7 @@ button:hover {
     color: #333;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 1120px) {
     main {
         display: flex;
         flex-direction: column;
@@ -114,8 +114,6 @@ button:hover {
     .liberation {
         width: 400px;
     }
-
-    .utilization div {}
 
     label {
         font-size: 12px;
