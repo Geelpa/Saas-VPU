@@ -9,12 +9,26 @@ body {
     background: #f58c36;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    margin: 12px;
+    width: 100vw;
+    height: 20vh;
+}
+
 main {
     display: flex;
     justify-content: center;
     align-content: center;
     margin: auto;
     height: 100vh;
+}
+
+.logo {
+    width: 200px;
 }
 
 .utilization div {
