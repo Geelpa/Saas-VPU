@@ -30,7 +30,7 @@ main {
     max-width: 50%;
     background: #fff;
     margin: auto;
-    padding: 25px;
+    padding: 16px;
     border-radius: 10px;
 }
 
@@ -55,8 +55,8 @@ input[type="checkbox"] {
 }
 
 input[type="date"] {
-    width: 100%;
-    padding: 8px;
+    /* width: 100%; */
+    padding: 4px;
     font-size: 16px;
 }
 
@@ -68,6 +68,10 @@ input[type="date"] {
 
 .plans h3 {
     margin: 12px 0;
+}
+
+.planos div {
+    display: flex;
 }
 
 .plans label {
@@ -104,7 +108,7 @@ table {
     margin-top: 20px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
     main {
         display: flex;
         flex-direction: column;
@@ -115,7 +119,7 @@ table {
 
     .utilization,
     .liberation {
-        /* max-width: 90%; */
+        max-width: 90%;
         transform: scale(1.6);
     }
 
