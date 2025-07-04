@@ -109,18 +109,14 @@ table {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
+        justify-content: space-around;
+        /* height: 100vh; */
     }
 
     .utilization,
     .liberation {
         /* max-width: 90%; */
-        transform: scale(1.5);
-    }
-
-    label {
-        font-size: 12px;
+        transform: scale(1.6);
     }
 
     input[type="date"] {
@@ -129,7 +125,7 @@ table {
     }
 
     .plans h3 {
-        font-size: 14px;
+        /* font-size: 14px; */
         font-weight: bold;
     }
 
