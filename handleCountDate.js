@@ -48,7 +48,7 @@ document.getElementById("calcularBtn").addEventListener("click", function () {
 
     const dailyRate = parseFloat(planRadio.value);
     const diffTime = endDate - startDate;
-    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1);
 
     if (incluirInicio) {
         diffDays += 1;
