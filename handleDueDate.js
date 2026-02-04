@@ -6,62 +6,78 @@ function gerarTabelaVencimentos() {
     const anoAtual = hoje.getFullYear();
     const mesAtual = hoje.getMonth();
 
+    // Feriados fixos (DD-MM)
     const feriadosFixos = [
-        "01-01", "21-04", "01-05", "07-09", "12-10", "02-11", "15-11", "25-12"
+        "01-01", "21-04", "01-05", "07-09",
+        "12-10", "02-11", "15-11", "25-12"
     ];
 
     function isFeriado(data) {
         const dia = data.getDate().toString().padStart(2, "0");
         const mes = (data.getMonth() + 1).toString().padStart(2, "0");
-        const chave = `${dia}-${mes}`;
-        return feriadosFixos.includes(chave);
+        return feriadosFixos.includes(`${dia}-${mes}`);
     }
 
-    function pularNaoUteis(data, ignorarSexta = false) {
-        while (
-            data.getDay() === 0 || // domingo
-            data.getDay() === 6 || // sábado
-            (ignorarSexta && data.getDay() === 5) || // sexta-feira (bloqueio)
+    function isDiaProtegido(data, protegerSexta = false) {
+        const diaSemana = data.getDay();
+        return (
+            diaSemana === 0 || // domingo
+            diaSemana === 6 || // sábado
+            (protegerSexta && diaSemana === 5) || // sexta
             isFeriado(data)
-        ) {
-            data.setDate(data.getDate() + 1);
-        }
-        return data;
+        );
     }
 
-    const diasVencimento = [20, 25]; // mês anterior
-    const diasVencimentoAtual = [5, 10, 15, 20, 25]; // mês atual
+    function proximoDiaPermitido(data, protegerSexta = false) {
+        const novaData = new Date(data);
+        while (isDiaProtegido(novaData, protegerSexta)) {
+            novaData.setDate(novaData.getDate() + 1);
+        }
+        return novaData;
+    }
 
-    const datasAnteriores = diasVencimento.map(dia => new Date(anoAtual, mesAtual - 1, dia));
-    const datasAtuais = diasVencimentoAtual.map(dia => new Date(anoAtual, mesAtual, dia));
-    const todasDatas = [...datasAnteriores, ...datasAtuais];
+    // 🔹 Dias de vencimento configuráveis
+    const diasVencimentoMesAnterior = [15, 20, 25];
+    const diasVencimentoMesAtual = [5, 10, 15, 20, 25];
 
-    todasDatas.forEach(vencimentoOriginal => {
-        // Ajustar vencimento para próximo dia útil
-        let dataVenc = new Date(vencimentoOriginal);
-        dataVenc = pularNaoUteis(dataVenc);
+    const datas = [
+        ...diasVencimentoMesAnterior.map(d =>
+            new Date(anoAtual, mesAtual - 1, d)
+        ),
+        ...diasVencimentoMesAtual.map(d =>
+            new Date(anoAtual, mesAtual, d)
+        )
+    ];
 
-        // Bloqueio = +15 dias (sem cair em sexta/sábado/domingo/feriado)
-        let dataBloqueio = new Date(dataVenc);
+    datas.forEach(vencimentoBase => {
+        // 📌 Ajustar vencimento
+        const dataVencimento = proximoDiaPermitido(vencimentoBase);
+
+        // 📌 Bloqueio = vencimento + 15 dias (não pode sex/sáb/dom/feriado)
+        let dataBloqueio = new Date(dataVencimento);
         dataBloqueio.setDate(dataBloqueio.getDate() + 15);
-        dataBloqueio = pularNaoUteis(dataBloqueio, true); // ignora sexta
+        dataBloqueio = proximoDiaPermitido(dataBloqueio, true);
 
-        // Liberação máxima = exatamente +7 dias, sem ajuste
-        let dataMax = new Date(dataBloqueio);
-        dataMax.setDate(dataMax.getDate() + 6);
+        // 📌 Liberação máxima
+        let dataLiberacao = new Date(dataBloqueio);
+        // +6 porque o dia do bloqueio conta como o 1º dia
+        dataLiberacao.setDate(dataLiberacao.getDate() + 6);
+
+        // Se cair em dia protegido, empurra
+        dataLiberacao = proximoDiaPermitido(dataLiberacao, true);
 
         const formatar = data =>
-            data.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+            data.toLocaleDateString("pt-BR", {
+                timeZone: "America/Sao_Paulo"
+            });
 
-        const linha = `
-        <tr>
-          <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataVenc)}</td>
-          <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataBloqueio)}</td>
-          <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataMax)}</td>
-        </tr>
-      `;
-
-        corpoTabela.innerHTML += linha;
+        corpoTabela.innerHTML += `
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataVencimento)}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataBloqueio)}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataLiberacao)}</td>
+            </tr>
+        `;
     });
 }
 
