@@ -105,32 +105,34 @@ function gerarTabelaVencimentos() {
             });
 
         const lembretesHTML = `
-            <div class="lista-lembretes">
+            <div class="flex flex-wrap gap-2 ">
                 ${lembretes.map(lembrete =>
             `<span>${formatarCurto(lembrete.data)}</span>`
-        ).join("<span class='separador'>|</span>")}
+        ).join(`<span class="text-orange-500">|</span>`)}
             </div>
-`;
+            `;
 
         corpoTabela.innerHTML += `
-        <tr>
-            <td style="padding: 8px; border: 1px solid #ccc;">
+    <tr>
+
+        <td class="border text-center px-1">
             ${formatar(dataVencimento)}
-            </td>
+        </td>
 
-            <td style="padding: 8px; border: 1px solid #ccc;">
+        <td class="border text-center px-1">
             ${formatar(dataBloqueio)}
-            </td>
+        </td>
 
-            <td style="padding: 8px; border: 1px solid #ccc;">
+        <td class="border text-center px-1">
             ${formatar(dataLiberacao)}
-            </td>
+        </td>
 
-            <td style="padding: 8px; border: 1px solid #ccc;">
-                ${lembretesHTML}
-            </td>
-        </tr>
-        `;
+        <td class="border text-center px-1">
+            ${lembretesHTML}
+        </td>
+
+    </tr>
+`;
     });
 }
 

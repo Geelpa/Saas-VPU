@@ -4,74 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <title>Financeiro</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <header>
-        <img src="logo_f_e.png" class="logo" alt="" srcset="">
+<body class="bg-orange-500 min-h-screen text-gray-800">
+
+    <header class="bg-orange-500 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-0">
+            <img src="logo_f_e.png" class="h-28 object-contain" alt="">
+        </div>
     </header>
 
-    <main>
-        <div class="utilization">
-            <h2>Dias de utilização</h2>
-            <div>
-                <div class="date-style">
-                    <label for="startDate">Data Inicial:</label>
-                    <input type="date" id="startDate">
+    <main class="max-w-7xl mx-auto p-2 grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
 
+        <!-- UTILIZAÇÃO -->
+        <div class="bg-white rounded-2xl shadow-sm p-4 h-fit">
+
+            <h2 class="text-2xl font-bold mb-6 text-center">
+                Dias de utilização
+            </h2>
+
+            <div class="flex justify-between items-center gap-1">
+                <div class="w-full ">
+                    <label for="startDate" class="block font-bold">
+                        Data Inicial
+                    </label>
+                    <input type="date" id="startDate" class="w-full rounded-xl px-4 py-2 bg-slate-200 ">
                 </div>
-                <div>
-                    <div class="date-style">
-                        <label for="endDate">Data Final:</label>
-                        <input type="date" id="endDate">
 
-                    </div>
+                <div class="w-full">
+                    <label for="endDate" class="block font-bold  mb-1 mx-2">
+                        Data Final
+                    </label>
+
+                    <input type="date" id="endDate" class="w-full rounded-xl px-4 py-2 bg-slate-200 ">
                 </div>
-
 
             </div>
-            <div class="plans">
-                <h3>Plano:</h3>
-                <div>
-                    <label><input type="radio" name="plan" value="3.70"> 300mb</label>
-                    <label><input type="radio" name="plan" value="4.07"> 500mb</label>
-                    <label><input type="radio" name="plan" value="4.81"> 600mb</label>
-                    <label><input type="radio" name="plan" value="5.55"> 800mb</label>
-                    <label><input type="radio" name="plan" value="7.40"> 1000mb</label>
+
+            <!-- PLANOS -->
+            <div class="mt-6">
+                <h3 class="font-semibold mb-3 text-lg">
+                    Plano
+                </h3>
+
+                <div class="grid grid-cols-5 md:grid-cols-3 gap-3">
+
+                    <label
+                        class="flex items-center gap-2 bg-slate-200 rounded-xl p-2 cursor-pointer transition font-bold text-center">
+                        <input type="radio" name="plan" value="3.70">
+                        300mb
+                    </label>
+
+                    <label
+                        class="flex items-center gap-2 bg-slate-200 rounded-xl p-2 cursor-pointer transition font-bold text-center">
+                        <input type="radio" name="plan" value="4.07">
+                        500mb
+                    </label>
+
+                    <label
+                        class="flex items-center gap-2 bg-slate-200 rounded-xl p-2 cursor-pointer transition font-bold text-center">
+                        <input type="radio" name="plan" value="4.81">
+                        600mb
+                    </label>
+
+                    <label
+                        class="flex items-center gap-2 bg-slate-200 rounded-xl p-2 cursor-pointer transition font-bold text-center">
+                        <input type="radio" name="plan" value="5.55">
+                        800mb
+                    </label>
+
+                    <label
+                        class="flex items-center gap-2 bg-slate-200 rounded-xl p-2 cursor-pointer transition font-bold text-center">
+                        <input type="radio" name="plan" value="7.40">
+                        1Gb
+                    </label>
+
                 </div>
             </div>
 
-            <label><input type="checkbox" id="incluirInicio"> Incluir data de início (+1 dia)</label>
+            <!-- CHECKBOX -->
+            <div class="mt-6">
+                <label class="flex items-center gap-2 ">
+                    <input type="checkbox" id="incluirInicio">
+                    Incluir data de início (+1 dia)
+                </label>
+            </div>
 
-            <button id="calcularBtn">Calcular</button>
+            <!-- BOTÃO -->
+            <button id="calcularBtn"
+                class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-xl transition w-full">
+                Calcular
+            </button>
 
-            <div class="result" id="output"></div>
+            <!-- RESULTADO -->
+            <div id="output" class="mt-6 bg-orange-50 border-orange-200 rounded-xl p-4  leading-relaxed">
+            </div>
+
         </div>
+        <!-- TABELA VENCIMENTO-->
+        <div class="bg-white rounded-2xl shadow-sm border p-4 h-fit">
 
-        <div class="liberation">
-            <h2>Vencimento e Bloqueio de Sinal</h2>
-            <p>
-                <!-- Após o vencimento de uma fatura, o sinal permanece ativo por até <strong>15 dias</strong>.
-                Se o pagamento não for identificado até esse prazo, o sinal é bloqueado. -->
-            </p>
+            <h2 class="text-2xl font-bold mb-6 text-center">
+                Vencimento e Bloqueio de Sinal
+            </h2>
 
-            <table>
+            <table class="w-full text-sm border-separate border-spacing-0 overflow-hidden rounded-xl">
                 <thead>
-                    <tr style="background-color: #f0f0f0;">
-                        <th style="padding: 4px; border: 1px solid #ccc;">Vencimento</th>
-                        <th style="padding: 4px; border: 1px solid #ccc;">Bloqueio</th>
-                        <th style="padding: 4px; border: 1px solid #ccc; max-width: 100px; ">Liberação Máxima</th>
-                        <th style="padding: 4px; border: 1px solid #ccc;">Avisos Neofin</th>
+                    <tr class="bg-slate-200">
+
+                        <th class="border px-4">
+                            Vencimento
+                        </th>
+
+                        <th class="border px-4">
+                            Bloqueio
+                        </th>
+
+                        <th class="border px-4">
+                            Liberação Máxima
+                        </th>
+
+                        <th class="border px-4">
+                            Avisos Neofin
+                        </th>
 
                     </tr>
                 </thead>
+
                 <tbody id="tabelaVencimentos"></tbody>
+
             </table>
+
         </div>
+
     </main>
+
     <script src="handleCountDate.js"></script>
     <script src="handleDueDate.js"></script>
+
 </body>
+
 
 </html>
