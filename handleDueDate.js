@@ -105,7 +105,7 @@ function gerarTabelaVencimentos() {
             });
 
         const lembretesHTML = `
-            <div class="flex flex-wrap gap-2 ">
+            <div class="flex flex-wrap gap-1 ">
                 ${lembretes.map(lembrete =>
             `<span>${formatarCurto(lembrete.data)}</span>`
         ).join(`<span class="text-orange-500">|</span>`)}
@@ -115,19 +115,19 @@ function gerarTabelaVencimentos() {
         corpoTabela.innerHTML += `
     <tr>
 
-        <td class="border text-center px-1">
+        <td class="border text-center pl-1">
             ${formatar(dataVencimento)}
         </td>
 
-        <td class="border text-center px-1">
+        <td class="border text-center pl-1">
             ${formatar(dataBloqueio)}
         </td>
 
-        <td class="border text-center px-1">
+        <td class="border text-center pl-1">
             ${formatar(dataLiberacao)}
         </td>
 
-        <td class="border text-center px-1">
+        <td class="border text-center pl-1">
             ${lembretesHTML}
         </td>
 
