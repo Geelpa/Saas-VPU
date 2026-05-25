@@ -122,6 +122,27 @@ table {
     margin-top: 20px;
 }
 
+.lista-lembretes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    color: #555;
+}
+
+.lista-lembretes span {
+    white-space: nowrap;
+}
+
+.separador {
+    color: #ef7e24;
+}
+
+
+
 @media (max-width: 1024px) {
     main {
         display: flex;

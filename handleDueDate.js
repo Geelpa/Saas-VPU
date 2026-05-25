@@ -36,6 +36,32 @@ function gerarTabelaVencimentos() {
         return novaData;
     }
 
+    function gerarLembretes(dataVencimento) {
+
+        const regras = [
+            { nome: "7 dias antes", dias: -7 },
+            { nome: "1 dia antes", dias: -1 },
+            { nome: "2 dias depois", dias: 2 },
+            { nome: "14 dias depois", dias: 14 },
+            { nome: "20 dias depois", dias: 20 }
+        ];
+
+        return regras.map(regra => {
+
+            let dataAviso = new Date(dataVencimento);
+
+            dataAviso.setDate(dataAviso.getDate() + regra.dias);
+
+            // segue a mesma lógica do bloqueio
+            dataAviso = proximoDiaPermitido(dataAviso);
+
+            return {
+
+                data: dataAviso
+            };
+        });
+    }
+
     // 🔹 Dias de vencimento configuráveis
     const diasVencimentoMesAnterior = [15, 20, 25];
     const diasVencimentoMesAtual = [5, 10, 15, 20, 25];
@@ -52,6 +78,7 @@ function gerarTabelaVencimentos() {
     datas.forEach(vencimentoBase => {
         // 📌 Ajustar vencimento
         const dataVencimento = proximoDiaPermitido(vencimentoBase);
+        const lembretes = gerarLembretes(dataVencimento);
 
         // 📌 Bloqueio = vencimento + 15 dias (não pode sex/sáb/dom/feriado)
         let dataBloqueio = new Date(dataVencimento);
@@ -71,12 +98,38 @@ function gerarTabelaVencimentos() {
                 timeZone: "America/Sao_Paulo"
             });
 
+        const formatarCurto = data =>
+            data.toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit"
+            });
+
+        const lembretesHTML = `
+            <div class="lista-lembretes">
+                ${lembretes.map(lembrete =>
+            `<span>${formatarCurto(lembrete.data)}</span>`
+        ).join("<span class='separador'>|</span>")}
+            </div>
+`;
+
         corpoTabela.innerHTML += `
-              <tr>
-                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataVencimento)}</td>
-                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataBloqueio)}</td>
-                <td style="padding: 10px; border: 1px solid #ccc;">${formatar(dataLiberacao)}</td>
-            </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ccc;">
+            ${formatar(dataVencimento)}
+            </td>
+
+            <td style="padding: 8px; border: 1px solid #ccc;">
+            ${formatar(dataBloqueio)}
+            </td>
+
+            <td style="padding: 8px; border: 1px solid #ccc;">
+            ${formatar(dataLiberacao)}
+            </td>
+
+            <td style="padding: 8px; border: 1px solid #ccc;">
+                ${lembretesHTML}
+            </td>
+        </tr>
         `;
     });
 }
