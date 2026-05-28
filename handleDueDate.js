@@ -104,30 +104,42 @@ function gerarTabelaVencimentos() {
                 month: "2-digit"
             });
 
+        const coresAvisos = [
+            "purple-500 font-semibold text-white", // 7 dias antes
+            "purple-500 font-semibold text-white", // 1 dia antes
+            "yellow-400 font-semibold", // 2 dias depois
+            "yellow-400 font-semibold", // 14 dias depois
+            "red-500 font-semibold text-white"     // 20 dias depois
+        ];
+
         const lembretesHTML = `
-            <div class="flex flex-wrap gap-1 ">
-                ${lembretes.map(lembrete =>
-            `<span>${formatarCurto(lembrete.data)}</span>`
-        ).join(`<span class="text-orange-500">|</span>`)}
-            </div>
-            `;
+    <div class="flex flex-wrap justify-between">
+
+        ${lembretes.map((lembrete, index) => `
+            <span class=" rounded-md bg-${coresAvisos[index]} p-1 m-1 w-[54px]">
+                ${formatarCurto(lembrete.data)}
+            </span>
+        `).join(`<span></span>`)}
+
+    </div>
+`;
 
         corpoTabela.innerHTML += `
     <tr>
 
-        <td class="border text-center pl-1">
+        <td class="border text-center">
             ${formatar(dataVencimento)}
         </td>
 
-        <td class="border text-center pl-1">
+        <td class="border text-center">
             ${formatar(dataBloqueio)}
         </td>
 
-        <td class="border text-center pl-1">
+        <td class="border text-center">
             ${formatar(dataLiberacao)}
         </td>
 
-        <td class="border text-center pl-1">
+        <td class="border text-center">
             ${lembretesHTML}
         </td>
 
