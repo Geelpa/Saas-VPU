@@ -63,8 +63,10 @@ function gerarTabelaVencimentos() {
     }
 
     // 🔹 Dias de vencimento configuráveis
-    const diasVencimentoMesAnterior = [15, 20, 25];
+    const diasVencimentoMesAnterior = [20, 25];
     const diasVencimentoMesAtual = [5, 10, 15, 20, 25];
+    const diasVencimentoMesSeguinte = [5, 10];
+
 
     const datas = [
         ...diasVencimentoMesAnterior.map(d =>
@@ -72,6 +74,9 @@ function gerarTabelaVencimentos() {
         ),
         ...diasVencimentoMesAtual.map(d =>
             new Date(anoAtual, mesAtual, d)
+        ),
+        ...diasVencimentoMesSeguinte.map(d =>
+            new Date(anoAtual, mesAtual + 1, d)
         )
     ];
 
