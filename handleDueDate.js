@@ -120,7 +120,7 @@ function gerarTabelaVencimentos() {
         ];
 
         const lembretesHTML = `
-    <div class="flex flex-wrap justify-between">
+    <div class="flex flex-wrap justify-evenly">
 
         ${lembretes.map((lembrete, index) => `
             <span class=" rounded-md bg-${coresAvisos[index]} p-1 m-1 w-[54px]">
