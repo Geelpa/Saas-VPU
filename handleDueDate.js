@@ -39,11 +39,12 @@ function gerarTabelaVencimentos() {
     function gerarLembretes(dataVencimento) {
 
         const regras = [
-            { nome: "7 dias antes", dias: -7 },
+            // { nome: "7 dias antes", dias: -7 },
             { nome: "1 dia antes", dias: -1 },
-            { nome: "2 dias depois", dias: 2 },
+            // { nome: "2 dias depois", dias: 2 },
             { nome: "14 dias depois", dias: 14 },
-            { nome: "20 dias depois", dias: 20 }
+            { nome: "20 dias depois", dias: 20 },
+            { nome: "30 dias depois", dias: 30 },
         ];
 
         return regras.map(regra => {
@@ -110,11 +111,12 @@ function gerarTabelaVencimentos() {
             });
 
         const coresAvisos = [
-            "purple-500 font-semibold text-white", // 7 dias antes
+            // "purple-500 font-semibold text-white", // 7 dias antes
             "purple-500 font-semibold text-white", // 1 dia antes
-            "yellow-400 font-semibold", // 2 dias depois
+            // "yellow-400 font-semibold", // 2 dias depois
             "yellow-400 font-semibold", // 14 dias depois
-            "red-500 font-semibold text-white"     // 20 dias depois
+            "yellow-400 font-semibold",     // 20 dias depois
+            "red-500 font-semibold text-white"     // 30 dias depois
         ];
 
         const lembretesHTML = `
